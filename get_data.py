@@ -12,7 +12,7 @@ def get_data(cur_pair, period, start_dt):
     request_hist_txt = 'https://poloniex.com/public?command=returnChartData&currencyPair=%s&start=%s&end=%s&period=%s' \
                           %(cur_pair, start_dt, end_dt, period)
     #request_now_txt = requests.get('https://poloniex.com/public?command=returnTicker')
-
+    print(request_hist_txt)
     response_hist = json.loads(requests.get(request_hist_txt).text)
     #response_now = json.loads(requests.get(request_now_txt).text)
 
@@ -24,6 +24,7 @@ def get_data(cur_pair, period, start_dt):
     volume =        []
     qt_volume =     []
     change =        []
+    
     sma =           []
     ema5 =          []
     ema15 =         []

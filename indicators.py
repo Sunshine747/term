@@ -94,15 +94,12 @@ def cog(dates, charts, period):
 
     while x < len(dates):
         consider = charts[x-period:x]
-
         multipliers = range(1, period+1)
-
         topFrac = 0
         botFrac = 0
-
         reversedOrder = reversed(consider)
-
         ordered = []
+        
         for eachItem in reversedOrder:
             ordered.append(eachItem)
 
@@ -113,9 +110,7 @@ def cog(dates, charts, period):
             botFrac+=addMe2
 
         CeOfGr = -(topFrac/float(botFrac))
-
         COG.append(CeOfGr)
-
         x+=1
 
     return dates[period:], COG
@@ -133,95 +128,34 @@ def myind(charts, period, width):
     b = np.array(sma_v[-start:])
     diviation = (a - b)
 
-##    print(diviation)
     diviation = np.absolute(diviation)
-##    print(diviation)
-    
-    
-##    print(len(a))
-##    print(len(b))
-##    print(len(diviation))
-        
-##    i = len(a)-1
-##    while i > 0:
-##        print(a[i])
-##        print(b[i])
-##        print(diviation[i])
-##        print()
-##        input()
-##        i -= 1
-        
-##    for i in sma_v:
-##        for j in charts:
-##            dif = (j - i)
-##            print(i)
-##            print(j)
-##            print(dif)
-##            input()
-##            if dif < 0:
-##                diviation.append(dif*(-1))
-##            else:
-##                diviation.append(dif)
-##
-##            dif = 0
-##    print(1)
-##    print(diviation)
     diviation.sort()
-    print(diviation)
-
-    print(round(len(diviation)*(width/100)))
-    print(diviation[round(len(diviation)*(width/100))])
-    print(diviation[round(len(diviation)*(width/100))+1])
-    print(diviation[round(len(diviation)*(width/100))-1])
-    
-
+ 
     width_v = diviation[round(len(diviation)*(width/100))] + 0.0000001
-    print(width_v)
-    print(diviation[round(len(diviation)*(width/100))])
-
-##    top_line = [x + width_v for x in b]
-##    bot_line = [z - width_v for z in b]
-##    top_line = b + width_v
-##    bot_line = b - width_v
 
     i = 0
     while i < len(sma_v)-1:
         top_line.append(sma_v[i] + width_v)
         bot_line.append(sma_v[i] - width_v)
-##        print(top_line[i])
-##        print(top_line[i] - sma_v[i])
-##        print()
-##        print(sma_v[i])
-##        print()
-##        print(sma_v[i] + width_v)
-##        print((sma_v[i] + width_v)- sma_v[i])
-##        print()
-##        print(bot_line[i])
-##        print(bot_line[i] - sma_v[i])
-##        print()
-##        input()
         i += 1
 
-##    i = len(sma_v)-1
-##    while i > 0:
-##        top_line.append(sma_v[i] + width_v)
-##        bot_line.append(sma_v[i] - width_v)
-##        print(top_line[i])
-##        print(top_line[i] - sma_v[i])
-##        print()
-##        print(sma_v[i])
-##        print()
-##        print(sma_v[i] + width_v)
-##        print((sma_v[i] + width_v)- sma_v[i])
-##        print()
-####        print(bot_line[i])
-####        print(bot_line[i] - sma_v[i])
-####        print()
-##        input()
-##        i -= 1
-
-##    for i in sma_v:
-##        top_line.append(sma_v[i] + width_v)
-##        bot_line.append(sma_v[i] - width_v)
-
     return top_line, sma_v, bot_line
+
+def atr(period, closep, highp, lowp):
+    start = len(closep[30-1:])
+    dates = []
+    atr = []
+    
+    x = h - l
+    y = abs(h - yc)
+    z = abs(l - yc)
+
+    if y <= x >= z:
+        atr = x
+    elif x <= y >= z:
+        atr = y
+    elif x <= z >= y:
+        atr = z
+
+    return atr, date
+    
