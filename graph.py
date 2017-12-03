@@ -16,7 +16,7 @@ def bytespdate2num(fmt, encoding='utf-8'):
         return strconverter(s)
     return bytesconverter
 
-def visual(cur_pair, date, openp, high, low, closep, volume, sma, ema_s, ema_l, rsi5, rsi15, macd, macd_signal, cog_date, cog, dateBB, topBB, topBB2, botBB, botBB2, midBB, top_line, mid_line, bot_line):
+def visual(cur_pair, date, openp, high, low, closep, volume, sma, ema_s, ema_l, rsi5, rsi15, macd, macd_signal, cog_date, cog, dateBB, topBB, topBB2, botBB, botBB2, midBB, top_line, mid_line, bot_line, atr):
 
     start = len(date[30-1:])
     space = 1000
@@ -76,12 +76,14 @@ def visual(cur_pair, date, openp, high, low, closep, volume, sma, ema_s, ema_l, 
     ax1.annotate(str("%.4f" % closep[-1]), (date[-1], closep[-1]),
                  xytext = (date[-1]+1000, closep[-1]), size=7, bbox=bbox_props)
 
-    ax3.plot(date[-start:], rsi5[-start:], linewidth=0.6, label = 'RSI')
-    ax3.plot(date[-start:], rsi15[-start:], linewidth=0.6, color = 'k')
-    ax3.axhline(90, color = 'r', linewidth=0.5)
-    ax3.axhline(10, color = 'r', linewidth=0.5)
-    ax3.axhline(70, color = 'b', linewidth=0.5)
-    ax3.axhline(30, color = 'b', linewidth=0.5)
+##    ax3.plot(date[-start:], rsi5[-start:], linewidth=0.6, label = 'RSI')
+##    ax3.plot(date[-start:], rsi15[-start:], linewidth=0.6, color = 'k')
+##    ax3.axhline(90, color = 'r', linewidth=0.5)
+##    ax3.axhline(10, color = 'r', linewidth=0.5)
+##    ax3.axhline(70, color = 'b', linewidth=0.5)
+##    ax3.axhline(30, color = 'b', linewidth=0.5)
+
+    ax3.plot(date[-start:], atr[-start:], linewidth=0.6, label = 'ATR')
     
     ax2.plot(date[-start:], macd[-start:], linewidth=0.2, color = 'r')
     ax2.plot(date[-start:], macd_signal[-start:], linewidth=0.6, color = 'k')
@@ -98,15 +100,18 @@ def visual(cur_pair, date, openp, high, low, closep, volume, sma, ema_s, ema_l, 
 ##    ax1cog.plot([],[], color = 'k', alpha = 0.9)  
 ##    ax1cog.plot(cog_date[-start:], cog[-start:], color = 'k', linewidth = 0.4, alpha = 0.9)
 
-    ax1.plot(dateBB[-start:], topBB[-start:], color = 'b',linewidth = 0.4, alpha = 0.9)
-    ax1.plot(dateBB[-start:], midBB[-start:], color = '#efdb21',linewidth = 0.6, alpha = 1)
-    ax1.plot(dateBB[-start:], botBB[-start:], color = 'k',linewidth = 0.4, alpha = 0.9)
-    ax1.plot(dateBB[-start:], topBB2[-start:], color = 'b',linewidth = 0.4, alpha = 0.9)
-    ax1.plot(dateBB[-start:], botBB2[-start:], color = 'k',linewidth = 0.4, alpha = 0.9)
+##    ax1.plot(dateBB[-start:], topBB[-start:], color = 'b',linewidth = 0.4, alpha = 0.9)
+##    ax1.plot(dateBB[-start:], midBB[-start:], color = '#efdb21',linewidth = 0.6, alpha = 1)
+##    ax1.plot(dateBB[-start:], botBB[-start:], color = 'k',linewidth = 0.4, alpha = 0.9)
+##    ax1.plot(dateBB[-start:], topBB2[-start:], color = 'b',linewidth = 0.4, alpha = 0.9)
+##    ax1.plot(dateBB[-start:], botBB2[-start:], color = 'k',linewidth = 0.4, alpha = 0.9)
 
-    ax1.plot(date[-start:], top_line[-start:], color = 'r',linewidth = 0.7, alpha = 0.9)
-    ax1.plot(date[-start:], mid_line[-start:], color = 'r',linewidth = 0.7, alpha = 0.9)
-    ax1.plot(date[-start:], bot_line[-start:], color = 'r',linewidth = 0.7, alpha = 0.9)
+    ax1.plot(date[-start:], top_line[-start:], color = 'r',linewidth = 0.5, alpha = 0.8)
+    ax1.plot(date[-start:], mid_line[-start:], color = 'r',linewidth = 0.5, alpha = 0.8)
+    ax1.plot(date[-start:], bot_line[-start:], color = 'r',linewidth = 0.5, alpha = 0.8)
+
+##    ax1.plot(date[-start:], ema_s[-start:], color = 'g',linewidth = 0.5, alpha = 0.8)
+    ax1.plot(date[-start:], sma[-start:], color = 'b',linewidth = 0.5, alpha = 0.8)
 
 ##    ax1midBB.plot([],[], color = 'b', alpha = 0.9) 
 ##    ax1midBB.plot(dateBB[-start:], midBB[-start:], color = 'k', linewidth = 0.4, alpha = 0.9)

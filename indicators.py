@@ -141,21 +141,30 @@ def myind(charts, period, width):
 
     return top_line, sma_v, bot_line
 
-def atr(period, closep, highp, lowp):
+def atr(closep, highp, lowp):
     start = len(closep[30-1:])
     dates = []
     atr = []
+
+    h = np.array(highp[-start:])
+    l = np.array(lowp[-start:])
+    ycsrc = closep[:-1].copy()
+    yc = np.array(ycsrc[-start:])
     
     x = h - l
     y = abs(h - yc)
     z = abs(l - yc)
 
-    if y <= x >= z:
-        atr = x
-    elif x <= y >= z:
-        atr = y
-    elif x <= z >= y:
-        atr = z
 
-    return atr, date
+    i=0
+    while i < len(h):
+        if y[i] <= x[i] >= z[i]:
+            atr.append(x[i])
+        elif x[i] <= y[i] >= z[i]:
+            atr.append(y[i])
+        elif x[i] <= z[i] >= y[i]:
+            atr.append(z[i])
+        i += 1
+
+    return atr
     

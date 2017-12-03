@@ -54,15 +54,15 @@ def get_data(cur_pair, period, start_dt):
 
         i += 1
 
-    sma =   indicators.sma(closep, 30)
-    ema5 =  indicators.ema(closep, 5)
+    sma =   indicators.sma(closep, 3)
+    ema5 =  indicators.ema(closep, 3)
     ema15 = indicators.ema(closep, 15)
     rsi5 =   indicators.rsi(closep, 5)
     rsi15 = indicators.rsi(closep, 15)
     macd, macd_signal = indicators.macd(closep, 3, 9)
     cog_date, cog = indicators.cog(date, closep, 20)
     dateBB, topBB, topBB2, botBB, botBB2, midBB = indicators.bb(2, 1, 21, closep, date)
-    top_line, mid_line, bot_line = indicators.myind(closep, 21, 85)
+    top_line, mid_line, bot_line = indicators.myind(closep, 28, 60)
+    atr = indicators.atr(closep, high, low)
     
-    
-    return date, high, low, openp, closep, volume, qt_volume, change, sma, ema5, ema15, rsi5, rsi15, macd, macd_signal, cog_date, cog, dateBB, topBB, topBB2, botBB, botBB2, midBB, top_line, mid_line, bot_line
+    return date, high, low, openp, closep, volume, qt_volume, change, sma, ema5, ema15, rsi5, rsi15, macd, macd_signal, cog_date, cog, dateBB, topBB, topBB2, botBB, botBB2, midBB, top_line, mid_line, bot_line, atr
