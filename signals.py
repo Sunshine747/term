@@ -9,11 +9,13 @@ def open_long(date, long_f, btc_b, top_line, sma, closep, commission):
         + '  BALANCE ETH: ' + str(long_order) \
         + '  BALANCE BTC: ' + str(0))
     f = open('long.csv', 'a')
-    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d %H:%M:%S') + ';' \
+    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
+            + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'BUY;' \
             + closep[-1] + ';' \
             + '0;' \
             + long_order + ';' \
+            + com + ';' \
             + commission + ';\n')
     f.close()
     return 1, 0, long_order
@@ -28,11 +30,13 @@ def open_short(date, short_f, eth_b, bot_line, sma, closep, commission):
         + '  BALANCE ETH: ' + str(0) \
         + '  BALANCE BTC: ' + str(short_order))
     f = open('short.csv', 'a')
-    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d %H:%M:%S') + ';' \
+    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
+            + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'BUY;' \
             + closep[-1] + ';' \
             + short_order + ';' \
             + '0;' \
+            + com + ';' \
             + commission + ';\n')
     f.close()
     return 1, 0, short_order
@@ -47,11 +51,13 @@ def close_long(date, long_f, long_order, top_line, sma, closep, commission):
         + '  BALANCE ETH: ' + str(0) \
         + '  BALANCE BTC: ' + str(btc_b))
     f = open('long.csv', 'a')
-    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d %H:%M:%S') + ';' \
+    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
+            + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'SELL;' \
             + closep[-1] + ';' \
             + btc_b + ';' \
             + '0;' \
+            + com + ';' \
             + commission + ';\n')
     f.close()
     return 0, btc_b, 0
@@ -66,11 +72,13 @@ def close_short(date, short_f, short_order, bot_line, sma, closep, commission):
         + '  BALANCE ETH: ' + str(eth_b) \
         + '  BALANCE BTC: ' + str(0))
     f = open('short.csv', 'a')
-    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d %H:%M:%S') + ';' \
+    f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
+            + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'SELL;' \
             + closep[-1] + ';' \
             + '0;' \
             + eth_b + ';' \
+            + com + ';' \
             + commission + ';\n')
     f.close()
     return 0, eth_b, 0
