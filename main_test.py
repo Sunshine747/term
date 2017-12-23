@@ -20,13 +20,13 @@ while a != 1000:
 
     date, closep, sma, top_line, mid_line, bot_line = gd.get_price(date_data, closep_data, 'BTC_ETH')
 
-    if (sma[i] >= top_line[i]) && (sma[i-1] < top_line[i-1]) && long_f == 0:
+    if (sma[-1] >= top_line[-1]) && (sma[-2] < top_line[-2]) && long_f == 0:
         long_f, btc_b, long_order = sig.open_long(date, long_f, btc_b, top_line, sma, closep, commission)
-    elif (sma[i] <= bot_line[i]) && (sma[i-1] > bot_line[i-1]) && short_f == 0:
+    elif (sma[-1] <= bot_line[-1]) && (sma[-2] > bot_line[-2]) && short_f == 0:
         short_f, eth_b, short_order = sig.open_short(date, short_f, eth_b, bot_line, sma, closep, commission)
-    elif (sma[i] <= top_line[i]) && (sma[i-1] > top_line[i-1]) && long_f == 1:
+    elif (sma[-1] <= top_line[-1]) && (sma[-2] > top_line[-2]) && long_f == 1:
         long_f, btc_b, long_order = sig.close_long(date, long_f, long_order, top_line, sma, closep, commission)
-    elif (sma[i] >= bot_line[i]) && (sma[i-1] < bot_line[i-1]) && short_f == 1:
+    elif (sma[-1] >= bot_line[-1]) && (sma[-2] < bot_line[-2]) && short_f == 1:
         short_f, eth_b, short_order = sig.close_short(date, short_f, short_order, bot_line, sma, closep, commission)
 
 
