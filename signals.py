@@ -1,3 +1,6 @@
+import time
+from datetime import datetime
+
 ##myind
 def open_long(date, long_f, btc_b, top_line, sma, closep, commission):
     print ('###############################################------BUY(LONG)------################################################')
@@ -12,11 +15,11 @@ def open_long(date, long_f, btc_b, top_line, sma, closep, commission):
     f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
             + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'BUY;' \
-            + closep[-1] + ';' \
+            + str(closep[-1]) + ';' \
             + '0;' \
-            + long_order + ';' \
-            + com + ';' \
-            + commission + ';\n')
+            + str(long_order) + ';' \
+            + str(com) + ';' \
+            + str(commission) + ';\n')
     f.close()
     return 1, 0, long_order
 
@@ -33,11 +36,11 @@ def open_short(date, short_f, eth_b, bot_line, sma, closep, commission):
     f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
             + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'BUY;' \
-            + closep[-1] + ';' \
-            + short_order + ';' \
+            + str(closep[-1]) + ';' \
+            + str(short_order) + ';' \
             + '0;' \
-            + com + ';' \
-            + commission + ';\n')
+            + str(com) + ';' \
+            + str(commission) + ';\n')
     f.close()
     return 1, 0, short_order
 
@@ -54,11 +57,11 @@ def close_long(date, long_f, long_order, top_line, sma, closep, commission):
     f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
             + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'SELL;' \
-            + closep[-1] + ';' \
-            + btc_b + ';' \
+            + str(closep[-1]) + ';' \
+            + str(btc_b) + ';' \
             + '0;' \
-            + com + ';' \
-            + commission + ';\n')
+            + str(com) + ';' \
+            + str(commission) + ';\n')
     f.close()
     return 0, btc_b, 0
 
@@ -66,7 +69,7 @@ def close_short(date, short_f, short_order, bot_line, sma, closep, commission):
     print ('###############################################------SELL(SHORT)------################################################')
     eth_b = short_order / closep[-1]
     com = eth_b * commission
-    eth_b = eht_b - com
+    eth_b = eth_b - com
     print ('TIME: ' + datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d %H:%M:%S') \
         + '  COMISSION: ' + str(com) \
         + '  BALANCE ETH: ' + str(eth_b) \
@@ -75,11 +78,11 @@ def close_short(date, short_f, short_order, bot_line, sma, closep, commission):
     f.write(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
             + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
             + 'SELL;' \
-            + closep[-1] + ';' \
+            + str(closep[-1]) + ';' \
             + '0;' \
-            + eth_b + ';' \
-            + com + ';' \
-            + commission + ';\n')
+            + str(eth_b) + ';' \
+            + str(com) + ';' \
+            + str(commission) + ';\n')
     f.close()
     return 0, eth_b, 0
 
@@ -105,3 +108,5 @@ def close_short(date, short_f, short_order, bot_line, sma, closep, commission):
 ##        close_long(price, volume)
 ##    elif (ma[i] >= myind_bot[i]) && (ma[i-1] < myind_bot[i-1]) && flag == 1:
 ##        close_short(price, volume)
+
+
