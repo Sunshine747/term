@@ -21,6 +21,7 @@ def open_long(date, long_f, btc_b, top_line, sma, closep, commission):
             + str(com) + ';' \
             + str(commission) + ';\n')
     f.close()
+    time.sleep(300)
     return 1, 0, long_order
 
 def open_short(date, short_f, eth_b, bot_line, sma, closep, commission):
@@ -42,6 +43,7 @@ def open_short(date, short_f, eth_b, bot_line, sma, closep, commission):
             + str(com) + ';' \
             + str(commission) + ';\n')
     f.close()
+    time.sleep(300)
     return 1, 0, short_order
 
 def close_long(date, long_f, long_order, top_line, sma, closep, commission):

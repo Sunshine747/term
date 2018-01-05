@@ -15,7 +15,7 @@ a = 0
 i = 50
 while 1 == 1:
     if i == 50:
-        date_data, closep_data = gd.get_data('BTC_ETH', '1800', str(time.time()-(691200+86400)))
+        date_data, closep_data = gd.get_data('BTC_ETH', '300', str(time.time()-(691200+86400)))
         i = 0
 
     date, closep, sma, top_line, mid_line, bot_line = gd.get_price(date_data, closep_data, 'BTC_ETH')
