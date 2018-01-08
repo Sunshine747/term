@@ -35,7 +35,9 @@ def get_price(date, closep, cur_pair):
 
     request_now_txt = 'https://poloniex.com/public?command=returnTicker'
 
-    response_now = json.loads(requests.get(request_now_txt).text)
+##    response_now = json.loads(requests.get(request_now_txt).text)
+    response_now = requests.get(request_now_txt).json()
+
     current = float(response_now[cur_pair]["last"])
 
     date.append(end_dt)
