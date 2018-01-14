@@ -15,10 +15,17 @@ a = 0
 i = 50
 while 1 == 1:
     if i == 50:
-        date_data, closep_data = gd.get_data('BTC_ETH', '300', str(time.time()-(691200+86400)))
-        i = 0
+        try:
+            date_data, closep_data = gd.get_data('BTC_ETH', '300', str(time.time()-(691200+86400)))
+            i = 0
+        except ValueError:
+            print('bad json')
 
-    date, closep, sma, top_line, mid_line, bot_line = gd.get_price(date_data, closep_data, 'BTC_ETH')
+    try:
+        date, closep, sma, top_line, mid_line, bot_line = gd.get_price(date_data, closep_data, 'BTC_ETH')
+    except ValueError:
+        print('bad json')
+
 
 ##    print(datetime.fromtimestamp(int(date[-1])).strftime('%Y-%m-%d') + ';' \
 ##          + datetime.fromtimestamp(int(date[-1])).strftime('%H:%M:%S') + ';' \
